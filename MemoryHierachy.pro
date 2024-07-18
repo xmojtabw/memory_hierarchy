@@ -1,5 +1,5 @@
 QT       += core gui
-
+QT       += core gui charts
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
@@ -9,16 +9,22 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    info_table.cpp \
     main.cpp \
     mainwindow.cpp \
-    memory.cpp
+    memory.cpp \
+    show_graph.cpp
 
 HEADERS += \
+    info_table.h \
     mainwindow.h \
-    memory.h
+    memory.h \
+    show_graph.h
 
 FORMS += \
-    mainwindow.ui
+    info_table.ui \
+    mainwindow.ui \
+    show_graph.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

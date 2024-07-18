@@ -71,7 +71,6 @@ response_detail MainWindow::runSimulation(const query_detail& qd)
             }
         }
     }
-    // address = generateAddress(qd.t_locality,qd.p_locality,qd.address_count,qd.mem_len ) ;
     rd.l1_time = qd.address_count;
     for( QBitArray & adr : physical_addresses)
     {
@@ -107,13 +106,6 @@ response_detail MainWindow::runSimulation(const query_detail& qd)
         }
     }
     return rd;
-    // rd.l1_time *= qd.l1_time;
-    // rd.l2_time *= qd.l2_time;
-    // rd.l3_time *= qd.l3_time;
-    // rd.mem_time *= qd.mem_time;
-    // rd.tlb_time *= qd.tbl_time;
-    // rd.t_table_time *= qd.t_table_time;
-    // rd.disk_time *= qd.disk_time;
 
 }
 
@@ -207,7 +199,10 @@ void MainWindow::on_run_btn_clicked()
     qDebug() << "TLB total time"<<qd.mem_time* rd.tlb_time;
     qDebug() << "Translate table total time" << qd.t_table_time * rd.t_table_time;
     qDebug() << "disk total time" <<qd.disk_time *  rd.disk_time;
-
+    show_graph *sGraph = new show_graph(qd,rd, this);
+    sGraph->show();
+    info_table *i_table = new info_table(qd,rd, this);
+    i_table->show();
 }
 
 
@@ -216,5 +211,24 @@ void MainWindow::on_generattor_btn_clicked()
     query_detail qd = createQuery();
     virtual_addresses = generateAddresses(qd.t_locality,qd.p_locality,qd.address_count,qd.virtual_len ) ;
     physical_addresses = generateAddresses(qd.t_locality,qd.p_locality,qd.address_count,qd.mem_len ) ;
+
+    int l1_num = pow(2, ui->L1_len->value() + ui->L1_block->value());
+    ui->L1_size->display(l1_num);
+
+    int l2_num = pow(2, ui->L2_len->value() + ui->L2_block->value());
+    ui->L2_size->display(l2_num);
+
+    int l3_num = pow(2, ui->L3_len->value() + ui->L3_block->value());
+    ui->L3_size->display(l3_num);
+
+    int t1_size = pow(2, ui->t_table_len->value());
+    ui->t_table_size->display(t1_size);
+
+    int tlb_size = pow(2, ui->tlb_len->value());
+    ui->tlb_size->display(tlb_size);
+
+    int mem_size = pow(2, ui->mem_len->value());
+    ui->mem_size->display(mem_size);
 }
+
 

@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "memory.h"
+#include "show_graph.h"
+#include "info_table.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -29,6 +31,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QDialog *sGraph;
     Memory * L1;
     Memory * L2;
     Memory * L3;

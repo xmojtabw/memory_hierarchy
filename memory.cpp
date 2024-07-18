@@ -124,12 +124,12 @@ Memory::Memory(int len,int tag_bits,int control_bits ,int block_size, mem_types 
         break;
     case rr:
         {
-
+            //nothing to do
         }
         break;
     case map:
         {
-
+            //nothing to do
         }
         break;
     default:
